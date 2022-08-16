@@ -15,6 +15,7 @@ import { SettingsView } from "./src/features/settings/views/SettingsView";
 import { MapView } from "./src/features/map/views/MapView";
 import { theme } from "./src/infrastructure/theme";
 import { RestaurantsContextProvider } from "./src/services/restaurants/RestaurantsContext";
+import { LocationContextProvider } from "./src/services/location/LocationContext";
 
 const Tab = createBottomTabNavigator();
 
@@ -40,20 +41,24 @@ export default function App() {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
   const [latoLoaded] = useLato({ Lato_400Regular });
 
-  if (!oswaldLoaded || !latoLoaded) return null;
+  if (!oswaldLoaded || !latoLoaded) {
+    return null;
+  }
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsContextProvider>
-          <NavigationContainer>
-            <Tab.Navigator screenOptions={createScreenOptions}>
-              <Tab.Screen name="Restaurants" component={RestaurantView} />
-              <Tab.Screen name="Map" component={MapView} />
-              <Tab.Screen name="Settings" component={SettingsView} />
-            </Tab.Navigator>
-          </NavigationContainer>
-        </RestaurantsContextProvider>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <NavigationContainer>
+              <Tab.Navigator screenOptions={createScreenOptions}>
+                <Tab.Screen name="Restaurants" component={RestaurantView} />
+                <Tab.Screen name="Map" component={MapView} />
+                <Tab.Screen name="Settings" component={SettingsView} />
+              </Tab.Navigator>
+            </NavigationContainer>
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

@@ -18,7 +18,6 @@ import {
 export const RestaurantInfoCardComponent = ({ restaurant = {} }) => {
   const {
     name = "Some Restaurant",
-    icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
     photos = [
       "https://www.foodiesfeed.com/wp-content/uploads/2022/07/pizza-with-pineapple-and-thin-crust.jpg",
     ],

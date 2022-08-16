@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
-import { Colors, Searchbar } from "react-native-paper";
+import { Colors } from "react-native-paper";
 
 import { RestaurantInfoCardComponent } from "../components/RestaurantInfoCardComponent";
 import {
-  SearchContainer,
   RestaurantList,
   LoadingContainer,
   Loading,
 } from "./RestaurantViewStyles";
 import { SafeArea } from "../../../components/utility/SafeAreaComponent";
 import { RestaurantsContext } from "../../../services/restaurants/RestaurantsContext";
+import { Search } from "../components/SearchComponent";
 
 export const RestaurantView = () => {
-  const { isLoading, error, restaurants } = useContext(RestaurantsContext);
+  const { isLoading, restaurants } = useContext(RestaurantsContext);
   return (
     <SafeArea>
       {isLoading && (
@@ -20,9 +20,7 @@ export const RestaurantView = () => {
           <Loading size={50} animated={true} color={Colors.blue300} />
         </LoadingContainer>
       )}
-      <SearchContainer>
-        <Searchbar placeholder="Search" />
-      </SearchContainer>
+      <Search />
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {

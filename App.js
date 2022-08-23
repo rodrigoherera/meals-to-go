@@ -8,9 +8,11 @@ import {
 } from "@expo-google-fonts/oswald";
 
 import { theme } from "./src/infrastructure/theme";
+import { Navigator } from "./src/infrastructure/navigation";
+
 import { RestaurantsContextProvider } from "./src/services/restaurants/RestaurantsContext";
 import { LocationContextProvider } from "./src/services/location/LocationContext";
-import { Navigator } from "./src/infrastructure/navigation";
+import { FavouritesContextProvider } from "./src/services/favourites/FavouritesContext";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
@@ -23,11 +25,13 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <RestaurantsContextProvider>
-            <Navigator />
-          </RestaurantsContextProvider>
-        </LocationContextProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <Navigator />
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

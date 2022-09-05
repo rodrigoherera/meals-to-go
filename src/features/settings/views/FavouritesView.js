@@ -15,7 +15,7 @@ const Caption = styled(Text)`
 export const FavouritesView = () => {
   const { favourites } = useContext(FavouritesContext);
 
-  return favourites.length ? (
+  return !favourites.length ? (
     <Caption variant="caption">You don't have favourites yet!</Caption>
   ) : (
     <RestaurantList

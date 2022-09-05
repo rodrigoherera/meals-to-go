@@ -14,6 +14,7 @@ import { FavouritesContext } from "../../../services/favourites/FavouritesContex
 
 import { Search } from "../components/SearchComponent";
 import { FavouritesBar } from "../../../components/favourites/FavouritesBarComponent";
+import { FadeInView } from "../../../components/animations/FadeInAnimation";
 
 export const RestaurantView = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
@@ -48,7 +49,9 @@ export const RestaurantView = ({ navigation }) => {
                 })
               }
             >
-              <RestaurantInfoCardComponent restaurant={item} />
+              <FadeInView>
+                <RestaurantInfoCardComponent restaurant={item} />
+              </FadeInView>
             </TouchableOpacity>
           );
         }}
